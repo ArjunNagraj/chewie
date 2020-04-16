@@ -184,6 +184,7 @@ class ChewieController extends ChangeNotifier {
     this.isLive = false,
     this.allowFullScreen = true,
     this.allowMuting = true,
+    this.isAllowOnlyLandScapeInFullScreenIOS=false,
     this.systemOverlaysAfterFullScreen = SystemUiOverlay.values,
     this.deviceOrientationsAfterFullScreen = const [
       DeviceOrientation.portraitUp,
@@ -261,6 +262,9 @@ class ChewieController extends ChangeNotifier {
 
   /// Defines if the mute control should be shown
   final bool allowMuting;
+
+  ///Defines if Screen Orentation Should Change in iOS Mode
+  final bool isAllowOnlyLandScapeInFullScreenIOS;
 
   /// Defines the system overlays visible after exiting fullscreen
   final List<SystemUiOverlay> systemOverlaysAfterFullScreen;
