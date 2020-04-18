@@ -127,11 +127,22 @@ class ChewieState extends State<Chewie> {
     );
 
     SystemChrome.setEnabledSystemUIOverlays([]);
-    if (isAndroid || widget.controller.isAllowOnlyLandScapeInFullScreenIOS) {
+    if (isAndroid) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]);
+    }
+
+    if(!isAndroid && widget.controller.isAllowOnlyLandScapeInFullScreenIOS){
+
+     SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      ]);
+       
     }
 
     if (!widget.controller.allowedScreenSleep) {
