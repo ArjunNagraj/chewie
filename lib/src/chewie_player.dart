@@ -137,8 +137,8 @@ class ChewieState extends State<Chewie> {
     if(!isAndroid && widget.controller.isAllowOnlyLandScapeInFullScreenIOS){
 
      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
+       // DeviceOrientation.portraitUp,
+       // DeviceOrientation.portraitDown,
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
       ]);
