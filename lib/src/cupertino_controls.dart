@@ -62,7 +62,7 @@ class _CupertinoControlsState extends State<CupertinoControls> {
     chewieController = ChewieController.of(context);
     controller = chewieController.videoPlayerController;
     final orientation = MediaQuery.of(context).orientation;
-    final barHeight = orientation == Orientation.portrait ? 30.0 : 47.0;
+    final barHeight = orientation == Orientation.portrait ? 40.0 : 47.0;
     final buttonPadding = orientation == Orientation.portrait ? 16.0 : 24.0;
 
     return MouseRegion(

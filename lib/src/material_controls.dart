@@ -26,7 +26,7 @@ class _MaterialControlsState extends State<MaterialControls> {
   bool _dragging = false;
   bool _displayTapped = false;
 
-  final barHeight = 48.0;
+  final barHeight = 55.0;
   final marginSize = 5.0;
 
   VideoPlayerController controller;
