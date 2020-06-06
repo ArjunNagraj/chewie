@@ -26,7 +26,7 @@ class _MaterialControlsState extends State<MaterialControls> {
   bool _dragging = false;
   bool _displayTapped = false;
 
-  final barHeight = 55.0;
+  final barHeight = 48.0;
   final marginSize = 5.0;
 
   VideoPlayerController controller;
@@ -164,7 +164,9 @@ class _MaterialControlsState extends State<MaterialControls> {
       child: GestureDetector(
         onTap: () {
           if (_latestValue != null && _latestValue.isPlaying) {
+            _playPause();
             if (_displayTapped) {
+
               setState(() {
                 _hideStuff = true;
               });
@@ -180,7 +182,6 @@ class _MaterialControlsState extends State<MaterialControls> {
         },
         child: Container(
           color: Colors.transparent,
-          margin:EdgeInsets.top(5.0),
           child: Center(
             child: AnimatedOpacity(
               opacity:
@@ -189,7 +190,12 @@ class _MaterialControlsState extends State<MaterialControls> {
                       : 0.0,
               duration: Duration(milliseconds: 300),
               child: GestureDetector(
+                onTap: () {
+                  _playPause();
+//                  _latestValue.isPlaying ? pause():play();
+                },
                 child: Container(
+                  margin:_hideStuff?EdgeInsets.only(top:20):EdgeInsets.only(top:0),
                   decoration: BoxDecoration(
                     color: Theme.of(context).dialogBackgroundColor,
                     borderRadius: BorderRadius.circular(48.0),
