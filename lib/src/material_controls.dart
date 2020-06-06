@@ -180,6 +180,7 @@ class _MaterialControlsState extends State<MaterialControls> {
         },
         child: Container(
           color: Colors.transparent,
+          margin:EdgeInsets.top(5.0),
           child: Center(
             child: AnimatedOpacity(
               opacity:
