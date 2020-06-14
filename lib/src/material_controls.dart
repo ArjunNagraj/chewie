@@ -115,7 +115,14 @@ class _MaterialControlsState extends State<MaterialControls> {
       child: Container(
         height: barHeight,
         color: Theme.of(context).dialogBackgroundColor,
-        child: Row(
+        child: 
+          Column(
+          children:[
+          Row(
+          children: <Widget>[
+            chewieController.isLive ? const SizedBox() : _buildProgressBar(),
+            ]),
+            Row(
           children: <Widget>[
             _buildPlayPause(controller),
             chewieController.isLive
@@ -130,6 +137,9 @@ class _MaterialControlsState extends State<MaterialControls> {
                 : Container(),
           ],
         ),
+          ]
+          )
+        
       ),
     );
   }
