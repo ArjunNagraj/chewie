@@ -113,15 +113,18 @@ class _MaterialControlsState extends State<MaterialControls> {
       opacity: _hideStuff ? 0.0 : 1.0,
       duration: Duration(milliseconds: 300),
       child: Container(
-        height: barHeight,
+           height: barHeight,
+//        height: barHeight+10,
         color: Theme.of(context).dialogBackgroundColor,
         child: 
-          Column(
-          children:[
-          Row(
-          children: <Widget>[
-            chewieController.isLive ? const SizedBox() : _buildProgressBar(),
-            ]),
+//          Column(
+//          children:[
+//          Row(
+//          children: <Widget>[
+//            chewieController.isLive ? const SizedBox() : _buildProgressBar(),
+//
+//          ]),
+//              chewieController.isLive ? const SizedBox() : _buildProgressBar(),
             Row(
           children: <Widget>[
             _buildPlayPause(controller),
@@ -132,13 +135,16 @@ class _MaterialControlsState extends State<MaterialControls> {
             chewieController.allowMuting
                 ? _buildMuteButton(controller)
                 : Container(),
+//            chewieController.allowMuting
+//                ? _buildVolumeSlider(controller)
+//                : Container(),
             chewieController.allowFullScreen
                 ? _buildExpandButton()
                 : Container(),
           ],
         ),
-          ]
-          )
+//          ]
+//          )
         
       ),
     );
@@ -246,7 +252,8 @@ class _MaterialControlsState extends State<MaterialControls> {
               height: barHeight,
               padding: EdgeInsets.only(
                 left: 8.0,
-                right: 8.0,
+		right:8.0,
+     //           right: 2.0,
               ),
               child: Icon(
                 (_latestValue != null && _latestValue.volume > 0)
@@ -256,6 +263,29 @@ class _MaterialControlsState extends State<MaterialControls> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  double volumeValue=100.0;
+
+  Widget _buildVolumeSlider(VideoPlayerController controller){
+    return Container(
+      width:100,
+      child:Slider(
+        min: 0.0,
+        max: 100.0,
+        value: volumeValue,
+        onChanged: (value) {
+          volumeValue=value;
+          setState(() {
+            print("New Volume Value");
+            print(value);
+            volumeValue=value;
+            controller.setVolume(value);
+//            _value = value;
+          });
+        },
       ),
     );
   }
@@ -415,5 +445,43 @@ class _MaterialControlsState extends State<MaterialControls> {
         ),
       ),
     );
+
+  }
+
+  Widget _buildProgressBarTop() {
+    return
+      Expanded(
+          child: Container(
+            height:10,
+            child: Padding(
+              padding: EdgeInsets.only(left: 0.0),
+              child: MaterialVideoProgressBar(
+                controller,
+                onDragStart: () {
+                  setState(() {
+                    _dragging = true;
+                  });
+
+                  _hideTimer?.cancel();
+                },
+                onDragEnd: () {
+                  setState(() {
+                    _dragging = false;
+                  });
+
+                  _startHideTimer();
+                },
+                colors: chewieController.materialProgressColors ??
+                    ChewieProgressColors(
+                        playedColor: Theme.of(context).accentColor,
+                        handleColor: Theme.of(context).accentColor,
+                        bufferedColor: Theme.of(context).backgroundColor,
+                        backgroundColor: Theme.of(context).disabledColor),
+              ),
+            ),
+          )
+      );
+
+
   }
 }
