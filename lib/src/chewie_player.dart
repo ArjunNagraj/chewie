@@ -139,8 +139,9 @@ class ChewieState extends State<Chewie> {
      SystemChrome.setPreferredOrientations([
        // DeviceOrientation.portraitUp,
        // DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
+     
       ]);
        
     }
@@ -348,6 +349,9 @@ class ChewieController extends ChangeNotifier {
 
   void toggleFullScreen() {
     _isFullScreen = !_isFullScreen;
+    if(!_isFullScreen){
+     SystemChrome.setEnabledSystemUIOverlays([]);
+    }
     notifyListeners();
   }
 
