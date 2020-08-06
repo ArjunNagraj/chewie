@@ -140,7 +140,7 @@ class ChewieState extends State<Chewie> {
        // DeviceOrientation.portraitUp,
        // DeviceOrientation.portraitDown,
         DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
+       //DeviceOrientation.landscapeLeft,
      
       ]);
        
